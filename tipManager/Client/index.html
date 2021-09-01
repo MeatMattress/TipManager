@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <script src="./scripts/cycleLite.js"></script>
+    <script src="./scripts/fastClick.js"></script>
+    <script src="./scripts/noZoomOnRotate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="utf-8" />
+    <title>LCP Tip Calculator</title>
+</head>
+<body>
+    <div id="pages">
+        <section id="titlePage" class="page">
+        <canvas id="canvas"></canvas>
+            <div id="titlePageContainer">
+                <div id="titlePageWrapper" style="display:block">
+                    <div id="titlePageTextDiv">
+                        <h1>Lowcountry Produce Tip Calculator</h1>
+                    </div>
+                    <div id = "startButtonDivWrapper">
+                        <div id="startButtonDiv">
+                            <button type="button" id="startButton" onclick="start()">Start</button>
+                        </div>
+                    </div>
+                    <div id = "statsButtonDivWrapper">
+                        <div id = "statsButtonTitlePageDiv">
+                            <button type="button" id="statsButtonTitlePage" onclick="displayStatistics()">Show Statistics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formPage" class="page">
+            <div id="formPageContainer">
+                <form id="tipsInputForm">
+                    <div id="formInnerWrapper">
+                        <div id="numericInputDivWrapper">
+                            <div class="numericInput">
+                                <label for="creditTips">Credit Tips</label><br>
+                                <input type="text" class="inputBox" id="creditTipsInput" name="creditTips" placeholder="$"><br><br>
+                            </div>
+
+                            <div class="numericInput">
+                                <label for="cashTips">Cash Tips</label><br>
+                                <input type="text" class="inputBox" id="cashTipsInput" name="cashTips" placeholder="$"><br><br>
+                            </div>
+
+                            <div class="numericInput">
+                                <label for="chowNowTips">Chow Now Tips</label><br>
+                                <input type="text" class="inputBox" id="chowNowTipsInput" name="chowNowTips" placeholder="$"><br><br>
+                            </div>
+
+                            <div class="numericInput" id="toGoTipsDiv">
+                                <label for="toGoTips">To-Go Order Tips</label><br>
+                                <input type="text" class="inputBox" id="toGoTipsInput" name="toGoTips" placeholder="$"><br><br>
+                            </div>
+
+                            <div class="numericInput">
+                                <label for="serverCount">Server Count</label><br>
+                                <input type="text" class="inputBox" id="serverCountInput" name="serverCount" placeholder="#"><br><br>
+                            </div>
+
+                            <div class="numericInput" id="baristaCountDiv">
+                                <label for="baristaCount">Barista Count</label><br>
+                                <input type="text" class="inputBox" id="baristaCountInput" name="baristaCount" placeholder="#"><br><br>
+                            </div>
+
+                            <div class="numericInput" id="busserFoodRunnerCountDiv">
+                                <label for="busserFoodRunnerCount">Busser & Food Runner Count</label><br>
+                                <input type="text" class="inputBox" id="busserFoodRunnerCountInput" name="busserFoodRunnerCount" placeholder="#"><br><br>
+                            </div>
+                        </div>
+
+                        <div id="optionsDiv">
+                            <div id="brunchOrDinnerDiv">
+                                <h1>Shift:</h1>
+                                <div id="brunchDiv">
+                                    <label for="brunchRadioButton">Brunch</label>
+                                    <input type="radio" id="brunchRadioButton" value="brunch" name="shiftType" required checked="checked" />
+                                </div>
+                                <div id="dinnerDiv">
+                                    <label for="dinnerRadioButton">Dinner</label>
+                                    <input type="radio" id="dinnerRadioButton" value="dinner" name="shiftType" />
+                                </div>
+                            </div>
+                            <div id="tookPartTipsDiv">
+                                <h1>Did the baristas already take:</h1>
+                                <div id="tookChowNowTipsDiv">
+                                    <label for="tookChowNowTips">Chow Now Tips?</label>
+                                    <input type="checkbox" id="tookChowNowTipsCheckbox" name="tookChowNowTips" checked="checked" />
+                                </div>
+                                <div id="tookToGoTipsDiv">
+                                    <label for="tookToGoTips">To-Go Order Tips?</label>
+                                    <input type="checkbox" id="tookToGoTipsCheckbox" name="tookToGoTips" checked="checked" />
+                                </div>
+                            </div>
+                            <h1>Is someone leaving early?</h1>
+                            <div id="leaveEarlyDiv">
+                                
+                            </div>
+                            <!-- This is to be copied and pasted into leaveEarlyDiv-->
+                            <div class="leaveEarlyWrapper" id="leaveEarlyWrapper" style="display: none;">
+                                <div class="tipsCorrectPrompt">Tips Correct?</div>
+                                <input type="text" class="leaveEarlyInput" placeholder="Server Name">
+                                <div class="plusSign" onclick="addPerson()"></div>
+                                <div class="confirmTipInfoDiv">
+                                    <h1 class = "confirmationButton" onclick="confirmTipInfo()">&#10003;</h1>
+                                    <h1 class = "confirmationButton" onclick="declineTipInfo()">&#x274C;</h1>
+                                </div>
+                                <h1 class = "removeNameButton" onclick="removeName()">&#x274C;</h1>
+                                <h1 class = "leaveEarlyServerTips"></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div id = "formPageButtonsDiv">
+                        <button type="button" id="goBackButtonFormPage" onclick="$('#pages').cycle('prev')">Go Back</button>
+                        <button type="button" id="statsButtonFormPage" onclick="displayStatistics()">Show Statistics</button>
+                        <button type="button" id="submitButtonFormPage" onclick="handleFormSubmit()">Show Me The Money</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="resultsPage" class="page">
+            <div id="resultsContainer">
+                <div id="resultsWrapper">
+                    <table id="resultsTable">
+                    </table>
+                </div>
+            </div>
+            <div id = "resultsPageButtonDiv">
+                <div id="goBackButtonDivResultsPage">
+                    <button type="button" id="goBackButtonResultsPage" onclick="$('#pages').cycle('prev')">Go Back</button>
+                </div>
+                <div id="statsButtonResultsPageDiv">
+                    <button type="button" id="statsButtonResultsPage" onclick="displayStatistics()">Show Statistics</button>
+                </div>
+                <div id="submitButtonDivResultsPage">
+                    <button type="button" id="submitButtonResultsPage" onclick="handleSubmit()">Submit</button>
+                </div>
+            </div>
+        </section>
+        <section id = "statsPage" class = "page">
+            <div id = "statsContainer">
+                <div id = "innerDivTop">
+                    <div class = "canvasContainer">
+                        <canvas id = "statsCanvasPolarAreaChart" class = "chart"></canvas>
+                    </div>
+                    <div class = "canvasContainer">
+                        <canvas id = "statsCanvasPieChart" class = "chart"></canvas>
+                    </div>
+                </div>
+                <div id = "loadingDiv">
+                    <h1>Loading Data</h1>
+                </div>
+                <div id = "innerDivBottom">
+                    <div class = "canvasContainer">
+                        <canvas id = "statsCanvasLineChart" class = "chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div id = "statsPageReturnButtonDiv">
+                <button id = "statsPageReturnButton" onclick = "location.reload()">
+                    Return To Start
+                </button>
+            </div>
+        </section>
+        <section id = "postResult">
+            <div id = "postResultDiv">
+                <h1 id = "postResult">Submitting...</h1>
+            </div>
+        </section>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>

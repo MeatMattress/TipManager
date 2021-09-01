@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+html
+{
+    height: 100%;
+}
+body {
+    background-color: aqua;
+    height: 100%;
+    overflow: scroll;
+}
+
+/* TITLE PAGE SECTION */
+#canvas{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:aqua;
+    z-index: -1;
+}
+#titlePageContainer
+{
+    display: flex;
+    margin-top:250px;
+    justify-content:center;
+}
+
+#titlePageTextDiv h1 {
+    font-size: 60px;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
+#startButtonDiv, #statsButtonTitlePageDiv
+{
+    margin-top: 40px;
+    border: 2px solid blue;
+    background-color:aqua;
+    border-radius: 10px;
+    text-align:center;
+}
+#startButtonDivWrapper, #statsButtonDivWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#startButton, #statsButtonTitlePage {
+    border: none;
+    font-size: 60px;
+    padding: 10px;
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+/*END TITLE PAGE*/
+
+/* FORM PAGE BUTTONS */
+
+/* Form page buttons container div */
+#formPageButtonsDiv{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0px;
+}
+/* Submit button */
+#submitButtonFormPage, #submitButtonResultsPage {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 20px;
+    border: 3px;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: green;
+}
+
+/* Back Button */
+#goBackButtonFormPage, #goBackButtonResultsPage {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 20px;
+    border: 3px;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: red;
+}
+
+/* Show statistics button */
+#statsButtonFormPage, #fillOutFormPageButton, #statsButtonResultsPage, #statsPageReturnButton {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-size: 20px;
+    border: 3px;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: orange;
+}
+/* END FORM PAGE BUTTONS */
+
+/*FORM PAGE*/
+#formPage{
+    display: none;
+    justify-content: center;
+}
+#formInnerWrapper{
+    display:flex;
+    justify-content:space-evenly;
+}
+#formPageContainer {
+    margin-top:20px;
+    display: flex;
+    justify-content: center;
+    text-align:center;
+}
+label {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+.inputBox {
+    border: 2px solid blue;
+    border-radius: 10px;
+    height: 30px;
+    text-align: center;
+    width: 100px;
+    padding: 10px;
+    font-size: 20px;
+}
+#tookPartTipsDiv, #brunchOrDinnerDiv, #optionsDiv *{
+    margin: 10px;
+}
+input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 5px;
+    border: 2px solid #555;
+}
+.plusSign {
+border-radius: 50%;
+width: 50px;
+height: 50px;
+background-color: rgb(44,108,128)
+}
+
+.plusSign::before {
+  content: "+";
+  height:50px;
+  width:50px;
+  font-size:50px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-family:courier;
+  color:white;
+}
+.leaveEarlyWrapperClass, .confirmTipInfoDiv{
+    display: flex;
+}
+.confirmTipInfoDiv {
+    font-size: 20px;
+    border-radius: 10px;
+    display: none;
+}
+.leaveEarlyInput, .tipsCorrectPrompt{
+    text-align: center;
+    border: 2px solid blue;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.tipsCorrectPrompt {
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: none;
+}
+
+.removeNameButton {
+    display: none;
+}
+
+.leaveEarlyServerTips {
+    padding-top: 5px;
+}
+
+/*END FORM PAGE*/
+
+/* BEGIN RESULTS PAGE */
+
+#resultsPageButtonDiv {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0px;
+}
+
+#resultsTable *{
+    padding: 20px;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#resultsWrapper {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#loadingDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    left: 0px;
+}
+#loadingDiv h1 {
+    font-size: 60px;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+/* END RESULTS PAGE*/
+
+/* BEGIN STATISTICS PAGE */
+#innerDivTop, #innerDivBottom {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#innerDivBottom {
+    height: 400px;
+}
+
+.canvasContainer {
+    margin-top: 50px;
+}
+#statsContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.chart {
+    width: 100%;
+    height: 100%
+}
+#statsPageReturnButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+#statsPageReturnButton {
+    background-color: green;
+    position: absolute;
+    bottom: 20px;
+}
+/* END STATISTICS PAGE */
+
+/* BEGIN POST RESULT PAGE */
+
+#postResultDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 0px;
+}
+#postResult {
+    font-size: 60px;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+/* END POST RESULT PAGE */
